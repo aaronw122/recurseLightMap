@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Arclight light map</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header>
+    <h1>Light map</h1>
+    <span id="count" title="Numbers assigned"></span>
+    <button id="undo" disabled>Undo</button>
+    <button id="addBtn">Add bulb</button>
+    <button id="rowsBtn">Rows</button>
+    <button id="fitBtn" title="Fit map">Fit</button>
+    <button id="fileBtn">Export</button>
+  </header>
+
+  <svg id="map" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <div id="todo"><span id="todoLabel"></span><span id="chips"></span></div>
+
+  <div id="sheet" hidden>
+    <div class="sheet-head"><span id="sheetTitle"></span><button id="sheetClose" aria-label="Close">✕</button></div>
+    <form id="numForm" novalidate>
+      <input id="numInput" type="number" inputmode="numeric" min="1" max="55" placeholder="Light #" autocomplete="off">
+      <button type="submit">Set</button>
+      <button type="button" id="clearNum">Clear</button>
+    </form>
+    <div class="sheet-row">
+      <select id="rowSelect" aria-label="Row"></select>
+      <button id="orderPrev" title="Earlier in row">◀</button>
+      <button id="orderNext" title="Later in row">▶</button>
+      <button id="delBulb" class="danger">Delete bulb</button>
+    </div>
+  </div>
+
+  <dialog id="rowsDlg">
+    <h2>Rows</h2>
+    <ul id="rowsList"></ul>
+    <div class="dlg-actions">
+      <button id="newRow">New row</button>
+      <button id="rowsClose">Done</button>
+    </div>
+  </dialog>
+
+  <dialog id="fileDlg">
+    <h2>Export / import</h2>
+    <div class="dlg-actions">
+      <button id="dlJson">Download mapping.json</button>
+      <button id="copyJson">Copy JSON</button>
+      <button id="dlSvg">Download map.svg</button>
+      <button id="dlHtml">Download map.html</button>
+    </div>
+    <h3>Import</h3>
+    <div class="dlg-actions">
+      <label class="file-btn">Choose file<input id="importFile" type="file" accept=".json,application/json" hidden></label>
+    </div>
+    <textarea id="importText" placeholder="…or paste mapping JSON here"></textarea>
+    <div class="dlg-actions">
+      <button id="importPaste">Import pasted JSON</button>
+      <button id="resetSeed" class="danger">Reset to saved mapping</button>
+      <button id="fileClose">Close</button>
+    </div>
+  </dialog>
+
+  <div id="toast" hidden></div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
